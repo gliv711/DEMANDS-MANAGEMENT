@@ -42,4 +42,9 @@ public class DemandServiceImpl implements DemandService {
         return demandRepository.count();
     }
 
+    @Override
+    public List<Demand> findbyEmail(String email) {
+        return demandRepository.findByEmail(email);
+    }
+
 }

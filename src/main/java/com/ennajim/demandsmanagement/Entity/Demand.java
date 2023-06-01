@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Demand {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
+    private String email ;
     private String title ;
     private String jobTitle ;
     private String contractType ;
@@ -19,8 +20,6 @@ public class Demand {
     private String details ;
     private String experience ;
 
-    @Transient
-    private Company Owner ;
 
 
 }

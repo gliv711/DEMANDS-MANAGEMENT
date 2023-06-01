@@ -3,6 +3,7 @@ package com.ennajim.demandsmanagement.Controller;
 import com.ennajim.demandsmanagement.Entity.Demand;
 import com.ennajim.demandsmanagement.Services.DemandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,11 @@ private DemandService demandService ;
     }
 
 
+
+    @GetMapping("/demand/email/{email}")
+    public List<Demand>getByEmail(@PathVariable("email") String email){
+        return demandService.findbyEmail(email);
+    }
 
     @DeleteMapping("/demands/{Id}")
     public void deleteById(@PathVariable(name="Id") Long Id) {

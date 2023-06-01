@@ -12,4 +12,5 @@ public interface DemandService {
     void deleteById(Long id);
     Optional<Demand> findbyId(Long Id) ;
     long count();
+    List<Demand> findbyEmail(String email);
 }
