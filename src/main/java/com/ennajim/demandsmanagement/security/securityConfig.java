@@ -10,8 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.http.HttpMethod.DELETE;
-import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.*;
+
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -32,10 +32,12 @@ public class securityConfig  extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/api/login/**","/api/user/refreshtoken","/api/user","/api/user/email/{email}","/api/company","/api/admin","/api/demands/all","/api/demands","/swagger-ui/","/**").permitAll();
 
 
-        http.authorizeRequests().antMatchers(GET,"/api/user/all/**","/api/user/**","/api/user/count","/api/demands/all").hasAnyAuthority("admin");
+        http.authorizeRequests().antMatchers(GET,"/api/user/all/**","/api/user/**","/api/user/count","/api/demands/all","/api/demands/{Id}","/api/demands/count").hasAnyAuthority("admin");
 
         http.authorizeRequests().antMatchers(DELETE,"/api/user/{Id}").hasAnyAuthority("superAdmin");
-        http.authorizeRequests().antMatchers(DELETE,"/api/user/{Id}").hasAnyAuthority("admin");
+        http.authorizeRequests().antMatchers(DELETE,"/api/user/{Id}","/api/demands/{Id}").hasAnyAuthority("admin");
+        http.authorizeRequests().antMatchers(POST,"/api/demands/").hasAnyAuthority("admin");
+
 
 
         http.authorizeRequests().anyRequest().authenticated();
