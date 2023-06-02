@@ -1,6 +1,5 @@
 package com.ennajim.demandsmanagement.Entity;
 
-import com.ennajim.demandsmanagement.models.Company;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +18,7 @@ public class Demand {
     private String Salary ;
     private String details ;
     private String experience ;
-
+    private String regime ;
 
 
 }

@@ -29,7 +29,7 @@ private DemandService demandService ;
 
 
 
-    @GetMapping("/demand/email/{email}")
+    @GetMapping("/demands/email/{email}")
     public List<Demand>getByEmail(@PathVariable("email") String email){
         return demandService.findbyEmail(email);
     }
