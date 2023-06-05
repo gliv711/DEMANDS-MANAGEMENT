@@ -29,14 +29,14 @@ public class securityConfig  extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.authorizeRequests().antMatchers("/api/login/**","/api/user/refreshtoken","/api/user","/api/user/email/{email}","/api/company","/api/admin","/api/demands/all","/api/demands","/swagger-ui/","/**").permitAll();
+        http.authorizeRequests().antMatchers("/api/login/**","/api/user/refreshtoken","/api/user","/api/user/email/{email}","/api/company","/api/admin","/swagger-ui/").permitAll();
 
 
-        http.authorizeRequests().antMatchers(GET,"/api/user/all/**","/api/user/**","/api/user/count","/api/demands/all","/api/demands/{Id}","/api/demands/count").hasAnyAuthority("admin");
+        http.authorizeRequests().antMatchers(GET,"/api/user/all/**","/api/user/**","/api/user/count","/api/demands/all","/api/demands/{Id}","/api/demands/count").hasAnyAuthority("admin", "adminsuper","company");
 
-        http.authorizeRequests().antMatchers(DELETE,"/api/user/{Id}").hasAnyAuthority("superAdmin");
-        http.authorizeRequests().antMatchers(DELETE,"/api/user/{Id}","/api/demands/{Id}").hasAnyAuthority("admin");
-        http.authorizeRequests().antMatchers(POST,"/api/demands/").hasAnyAuthority("admin");
+        http.authorizeRequests().antMatchers(DELETE,"/api/user/{Id}","/api/demands/{Id}").hasAnyAuthority("admin", "adminsuper");
+        http.authorizeRequests().antMatchers(POST,"/api/demands").hasAnyAuthority("admin", "adminsuper","company");
+
 
 
 
